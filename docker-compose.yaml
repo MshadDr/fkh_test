@@ -1,0 +1,18 @@
+version: '3.3'
+
+services:
+  fakher_app:
+    build:
+      dockerfile: Dockerfile-app
+      context: .
+    container_name: fakher_app
+    tty: true
+    volumes:
+      - ./:/app
+    ports:
+      - '3000:3000'
+
+networks:
+  default:
+    external:
+      name: local_network
