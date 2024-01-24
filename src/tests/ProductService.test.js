@@ -1,4 +1,3 @@
-const ProductService = require('../services/ProductService'); // Adjust the path accordingly
 const productRepository = require('../domains/product/ProductRepository');
 const scoreRepository = require('../domains/product/score/ScoreRepository');
 
@@ -7,9 +6,8 @@ jest.mock('../domains/product/score/ScoreRepository');
 
 describe('ProductService', () => {
     let productService;
-
     beforeEach(() => {
-        productService = new ProductService();
+        productService = require('../services/ProductService');
     });
 
     describe('index', () => {

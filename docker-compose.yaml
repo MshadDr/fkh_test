@@ -1,6 +1,21 @@
 version: '3.3'
 
 services:
+  postgres:
+    container_name: postgres
+    image: postgres:latest
+    restart: always
+    tty: true
+    ports:
+      - 5432:5432
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: postgres
+      POSTGRES_EXTENSIONS: pg_trgm
+
   fakher_app:
     build:
       dockerfile: Dockerfile-app
@@ -11,6 +26,10 @@ services:
       - ./:/app
     ports:
       - '3000:3000'
+
+volumes:
+  postgres_data:
+    driver: local
 
 networks:
   default:
